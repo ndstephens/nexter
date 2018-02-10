@@ -52,3 +52,37 @@ body {
     minmax(6rem, 1fr) 
     [full-end];
 }
+
+/*//?----------  BUTTONS  ----------*/
+.btn {
+  background-color: $color-primary;
+  color: #fff;
+  border: none;
+  border-radius: 0;
+  font-family: $font-display;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  padding: 1.8rem 3rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: $color-primary-dark;
+  }
+}
+
+/*//?----------  UTILITIES  ----------*/
+/*//* don't always want to hard-code margin into certain CSS declarations since that margin may not be wanted in all instances of that class (such as with headings) */
+/*//* this is primary only with reusable elements/classes, not usually those referenced with the BEM naming system, since those are very specific and therefore often can have specific margin properties */
+.mb-sm {
+  margin-bottom: 2rem;
+}
+.mb-md {
+  margin-bottom: 3rem;
+}
+.mb-lg {
+  margin-bottom: 4rem;
+}
+.mb-xlg {
+  margin-bottom: 8rem;
+}

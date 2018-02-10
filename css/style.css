@@ -22,9 +22,53 @@ body {
   /*//* want the center 8-col-grid to be fixed width while the screen width changes size.  the two side '1fr's will respond while the center 8 (holding the content of the '.features' and '.homes' sections) stays fixed.  having the '1fr' cols on the sides allow full-bleed sections to expand wider, and be be fully responsive with changing screen width. */
   grid-template-columns: [sidebar-start] 8rem [sidebar-end full-start] minmax(6rem, 1fr) [center-start] repeat(8, [col-start] minmax(min-content, 14rem) [col-end]) [center-end] minmax(6rem, 1fr) [full-end]; }
 
+/*//?----------  BUTTONS  ----------*/
+.btn {
+  background-color: #c69963;
+  color: #fff;
+  border: none;
+  border-radius: 0;
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  padding: 1.8rem 3rem;
+  cursor: pointer;
+  transition: background-color 0.2s; }
+  .btn:hover {
+    background-color: #b28451; }
+
+/*//?----------  UTILITIES  ----------*/
+/*//* don't always want to hard-code margin into certain CSS declarations since that margin may not be wanted in all instances of that class (such as with headings) */
+/*//* this is primary only with reusable elements/classes, not usually those referenced with the BEM naming system, since those are very specific and therefore often can have specific margin properties */
+.mb-sm {
+  margin-bottom: 2rem; }
+
+.mb-md {
+  margin-bottom: 3rem; }
+
+.mb-lg {
+  margin-bottom: 4rem; }
+
+.mb-xlg {
+  margin-bottom: 8rem; }
+
 .heading-1, .heading-2, .heading-3, .heading-4 {
   font-family: "Josefin Sans", sans-serif;
   font-weight: 400; }
+
+.heading-2 {
+  font-size: 4rem;
+  font-style: italic;
+  line-height: 1; }
+  .heading-2--light {
+    color: #f9f7f6; }
+  .heading-2--dark {
+    color: #54483a; }
+
+.heading-3 {
+  font-size: 1.6rem;
+  color: #c69963;
+  text-transform: uppercase; }
 
 .heading-4 {
   font-size: 1.9rem; }
@@ -75,11 +119,44 @@ body {
 
 .story__pictures {
   background-color: #c69963;
-  grid-column: full-start / col-end 4; }
+  grid-column: full-start / col-end 4;
+  background-image: linear-gradient(rgba(198, 153, 99, 0.5), rgba(198, 153, 99, 0.5)), url("../img/back.jpg");
+  display: grid;
+  /*//* make a 6x6 grid to help layout the images */
+  grid-template-rows: repeat(6, 1fr);
+  grid-template-columns: repeat(6, 1fr);
+  align-items: center; }
+
+.story__img--1 {
+  width: 100%;
+  grid-row: 2 / -2;
+  grid-column: 2 / -2;
+  box-shadow: 0 2rem 5rem rgba(0, 0, 0, 0.2); }
+
+.story__img--2 {
+  width: 115%;
+  grid-row: 4 / -2;
+  grid-column: 4 / -1;
+  /*//* at first it looked like the enlarged photo wasn't overflowing the grid, but in fact it was and instead was being blocked by the '.story__content' section to its right.  a higher z-index made it visible */
+  z-index: 10;
+  box-shadow: 0 2rem 5rem rgba(0, 0, 0, 0.3); }
 
 .story__content {
   background-color: #f9f7f6;
-  grid-column: col-start 5 / full-end; }
+  grid-column: col-start 5 / full-end;
+  /*//* using a 'vw' sizing unit for the padding allows it to be responsive with the screen size, similar to percentages */
+  padding: 6rem 8vw;
+  /*//* in this case Flexbox can also be used for achieving the vertical centering of the content with left justification */
+  display: grid;
+  /*//* 'align-CONTENT' references the row tracks/cells themselves */
+  align-content: center;
+  /*//* 'justify-ITEMS' references the content within those tracks/cells */
+  justify-items: start; }
+
+.story__text {
+  font-size: 1.5rem;
+  font-style: italic;
+  margin-bottom: 4rem; }
 
 .homes {
   background-color: #101d2c;
