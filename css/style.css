@@ -21,9 +21,17 @@ body {
   grid-template-rows: 80vh min-content 40vw repeat(3, min-content);
   /*//* want the center 8-col-grid to be fixed width while the screen width changes size.  the two side '1fr's will respond while the center 8 (holding the content of the '.features' and '.homes' sections) stays fixed.  having the '1fr' cols on the sides allow full-bleed sections to expand wider, and be be fully responsive with changing screen width. */
   grid-template-columns: [sidebar-start] 8rem [sidebar-end full-start] minmax(6rem, 1fr) [center-start] repeat(8, [col-start] minmax(min-content, 14rem) [col-end]) [center-end] minmax(6rem, 1fr) [full-end]; }
-  .container > * {
-    padding: 40px;
-    font-size: 3rem; }
+
+.heading-1, .heading-2, .heading-3, .heading-4 {
+  font-family: "Josefin Sans", sans-serif;
+  font-weight: 400; }
+
+.heading-4 {
+  font-size: 1.9rem; }
+  .heading-4--light {
+    color: #f9f7f6; }
+  .heading-4--dark {
+    color: #54483a; }
 
 .sidebar {
   background-color: #c69963;
@@ -38,9 +46,32 @@ body {
   background-color: #101d2c;
   grid-column: col-start 7 / full-end; }
 
+/*//?----------  SECTION LAYOUT  ----------*/
 .features {
-  background-color: #aaa;
-  grid-column: center-start / center-end; }
+  grid-column: center-start / center-end;
+  margin: 15rem 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+  grid-gap: 6rem;
+  /*//* some of the '.feature' children components have less text in than others.  since the default is 'stretch' they have a different spacing in them than the others.  set to 'start' so they all bring their content to the top */
+  align-items: start; }
+
+/*//?----------  COMPONENTS  ----------*/
+.feature {
+  display: grid;
+  grid-template-columns: min-content 1fr;
+  grid-row-gap: 1.5rem;
+  grid-column-gap: 2.5rem; }
+  .feature__icon {
+    fill: #c69963;
+    width: 4.5rem;
+    height: 4.5rem;
+    /*//* not using '-1' (but instead 'span 2') b/c '-1' only works for referencing the end of the EXPLICIT grid.  since i didn't make any explicit rows, the '-1' won't use the last implicit row.  therefore need to use 'span 2' */
+    /*//* also, by having the icon span down a row which therefore pushes the 'feature__text' element into the second column (instead of explicitly placing the paragraph into the second column) the height of the first row references the h4, not the icon, since the icon can span down */
+    grid-row: 1 / span 2;
+    transform: translateY(-1rem); }
+  .feature__text {
+    font-size: 1.7rem; }
 
 .story__pictures {
   background-color: #c69963;
