@@ -9,6 +9,10 @@
   grid-row-gap: 2rem;
   justify-items: center;
 
+  @media only screen and (max-width: $mq-medium) {
+    grid-column: 1 / -1;
+  }
+
   &__list {
     display: grid;
     /*//* 'min-content' works for the img since its width is defined.  then use 'max-content' for the text so that it won't wrap (which it does when using 'min-content') */
@@ -17,6 +21,14 @@
     /*//* have the row spacing be responsive with changing screen width */
     grid-row-gap: 5vh;
     align-items: center;
+
+    @media only screen and (max-width: $mq-medium) {
+      grid-template-columns: repeat(3, min-content max-content);
+    }
+
+    @media only screen and (max-width: $mq-small) {
+      grid-template-columns: min-content max-content;
+    }
   }
 
   &__img {

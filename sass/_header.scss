@@ -8,11 +8,20 @@
 
   display: grid;
   /*//* remember you can make every row custom based on what's included in it.  using '1fr' makes those rows responsive, but pushes down the elements below them */
-  grid-template-rows: 1fr min-content 6rem 1fr;
-  /*//* 'max-content' prevents text from wrapping, plus gives the grid a defined width which allows it to be centered within its parent (using 'justify-content: center') */
-  grid-template-columns: max-content;
+  grid-template-rows: 1fr min-content minmax(6rem, min-content) 1fr;
+  /*//* 'max-content' prevents text from wrapping, plus gives the grid a defined width which allows it to be centered within its parent (using 'justify-content: center'), however it prevents it from scaling, wrapping, and being responsive.  therefore we need to use 'minmax()' */
+  // grid-template-columns: max-content;
+  grid-template-columns: minmax(min-content, max-content);
   grid-row-gap: 1.5rem;
   justify-content: center;
+
+  @media only screen and (max-width: $mq-medium) {
+    grid-column: 1 / -1;
+  }
+
+  @media only screen and (max-width: $mq-small) {
+    padding: 5rem;
+  }
 
   &__logo {
     height: 3rem;
@@ -48,9 +57,12 @@
     grid-template-columns: repeat(4, 1fr);
     grid-column-gap: 3rem;
     justify-items: center;
+    align-items: center;
 
     img {
-      height: 2.5rem;
+      /*//* allows the images' sizes to be responsive */
+      max-height: 2.5rem;
+      max-width: 100%;
       /*//* don't forget about using filters on 'img' elements */
       filter: brightness(70%);
     }

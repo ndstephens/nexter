@@ -1,3 +1,4 @@
+/*//?----------  VARIABLES  ----------*/
 // COLOR VARIABLES
 $color-primary: #c69963;
 $color-primary-dark: #b28451;
@@ -14,9 +15,20 @@ $color-grey-dark-2: #6d5d4b;
 $font-primary: "Nunito", sans-serif;
 $font-display: "Josefin Sans", sans-serif;
 
+// MEDIA QUERY BREAKPOINTS
+$mq-largest: 75em; // 1200px/16
+$mq-large: 62.5em; // 1000px
+$mq-medium: 50em; // 800px
+$mq-small: 37.5em; // 600px
+
+/*//?----------  BASE SETTINGS  ----------*/
 html {
   box-sizing: border-box;
-  font-size: 62.5%; // 10px/16px
+  font-size: 62.5%; // 10px/16px -> 1rem = 10px
+
+  @media only screen and (max-width: $mq-largest) {
+    font-size: 50%;
+  }
 }
 
 body {
@@ -34,6 +46,7 @@ body {
   box-sizing: inherit;
 }
 
+/*//?----------  BASE LAYOUT  ----------*/
 .container {
   display: grid;
   /*//* the default for each row, if not explicitly given, is "auto".  "min-content" is pretty much the same as "auto".  the Story Section uses 40vw so that its height is always in relation (aspect ratio) to the screen width. */
@@ -43,14 +56,37 @@ body {
   grid-template-columns: 
     [sidebar-start] 
     8rem 
-    [sidebar-end 
-    full-start] 
+    [sidebar-end full-start] 
+    minmax(6rem, 1fr) 
+    [center-start] 
+    /*//* 'col-start' and 'col-end' will get implicit line numbers that are used when referencing those named lines */
+    repeat(8, [col-start] minmax(min-content, 14rem) [col-end])
+    [center-end] 
+    minmax(6rem, 1fr) 
+    [full-end];
+
+  /*//* !!! VERY IMPORTANT had i used line numbers to place items then now it'd all be fucked up (when using the media query), b/c removing a column would change those line numbers.  that's why naming lines is so important !!! */
+
+  @media only screen and (max-width: $mq-large) {
+    /*//* add a row at the top for the 'sidebar' and remove the first column (plus explicitly move the sidebar (done in its file/class)) */
+    grid-template-rows: 6rem 80vh min-content 40vw repeat(3, min-content);
+    // prettier-ignore
+    grid-template-columns: 
+    [full-start] 
     minmax(6rem, 1fr) 
     [center-start] 
     repeat(8, [col-start] minmax(min-content, 14rem) [col-end])
     [center-end] 
     minmax(6rem, 1fr) 
     [full-end];
+  }
+
+  @media only screen and (max-width: $mq-medium) {
+    /*//* move the Realtors section below the main Header into a new row (min-content), and make the main Header fill the entire viewport vertically (vh) minus the 6rem taken by the Sidebar nav */
+    /*//* also putting the 'story__content' above the 'story__pictures' in a separate row.  it was in a '40vw' sized row, but now it'll be in a 'min-content' row */
+    grid-template-rows: 6rem calc(100vh - 6rem) min-content min-content min-content repeat(3, min-content);
+    // same as: grid-template-rows: 6rem calc(100vh - 6rem);
+  }
 }
 
 /*//?----------  BUTTONS  ----------*/

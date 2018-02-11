@@ -9,6 +9,10 @@
   grid-gap: 6rem;
   /*//* some of the '.feature' children components have less text in than others.  since the default is 'stretch' they have a different spacing in them than the others.  set to 'start' so they all bring their content to the top */
   align-items: start;
+
+  @media only screen and (max-width: $mq-small) {
+    margin: 7.5rem 0;
+  }
 }
 
 /*//?----------  COMPONENTS  ----------*/
