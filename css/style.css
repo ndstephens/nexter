@@ -115,7 +115,9 @@ body {
   background-position: center;
   padding: 4rem 8rem 8rem;
   display: grid;
+  /*//* remember you can make every row custom based on what's included in it.  using '1fr' makes those rows responsive, but pushes down the elements below them */
   grid-template-rows: 1fr min-content 6rem 1fr;
+  /*//* 'max-content' prevents text from wrapping, plus gives the grid a defined width which allows it to be centered within its parent (using 'justify-content: center') */
   grid-template-columns: max-content;
   grid-row-gap: 1.5rem;
   justify-content: center; }
@@ -123,6 +125,7 @@ body {
     height: 3rem;
     justify-self: center; }
   .header__btn {
+    /*//* otherwise the button would size up to fill the entire grid cell */
     align-self: start;
     justify-self: start; }
   .header__seen-on-text {
@@ -144,11 +147,34 @@ body {
     justify-items: center; }
     .header__seen-on-logos img {
       height: 2.5rem;
+      /*//* don't forget about using filters on 'img' elements */
       filter: brightness(70%); }
 
 .realtors {
   background-color: #101d2c;
-  grid-column: col-start 7 / full-end; }
+  grid-column: col-start 7 / full-end;
+  padding: 3rem;
+  display: grid;
+  align-content: center;
+  justify-content: center;
+  grid-row-gap: 2rem;
+  justify-items: center; }
+  .realtors__list {
+    display: grid;
+    /*//* 'min-content' works for the img since its width is defined.  then use 'max-content' for the text so that it won't wrap (which it does when using 'min-content') */
+    grid-template-columns: min-content max-content;
+    grid-column-gap: 2rem;
+    /*//* have the row spacing be responsive with changing screen width */
+    grid-row-gap: 5vh;
+    align-items: center; }
+  .realtors__img {
+    width: 7rem;
+    border-radius: 50%;
+    display: block; }
+  .realtors__sold {
+    text-transform: uppercase;
+    color: #aaa;
+    margin-top: -3px; }
 
 /*//?----------  SECTION LAYOUT  ----------*/
 .features {

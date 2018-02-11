@@ -7,7 +7,9 @@
   padding: 4rem 8rem 8rem;
 
   display: grid;
+  /*//* remember you can make every row custom based on what's included in it.  using '1fr' makes those rows responsive, but pushes down the elements below them */
   grid-template-rows: 1fr min-content 6rem 1fr;
+  /*//* 'max-content' prevents text from wrapping, plus gives the grid a defined width which allows it to be centered within its parent (using 'justify-content: center') */
   grid-template-columns: max-content;
   grid-row-gap: 1.5rem;
   justify-content: center;
@@ -18,6 +20,7 @@
   }
 
   &__btn {
+    /*//* otherwise the button would size up to fill the entire grid cell */
     align-self: start;
     justify-self: start;
   }
@@ -48,6 +51,7 @@
 
     img {
       height: 2.5rem;
+      /*//* don't forget about using filters on 'img' elements */
       filter: brightness(70%);
     }
   }
