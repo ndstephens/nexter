@@ -1,10 +1,10 @@
 # Nexter
 
-## Fake luxury real estate company website
+## Luxury real estate company website - Concept
 
 Created while taking an online course for the purpose of learning CSS Grid and responsive web design.
 
-View site [here](https://ndstephens.github.io/nexter/)
+### View site [here](https://ndstephens.github.io/nexter/)
 
 <br>
 
